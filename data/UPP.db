@@ -1,0 +1,4 @@
+username,role,password,pin
+jamie1,0,pass1,123
+jamie2,0,pass1,123
+admin,1,pass1,123
