@@ -34,3 +34,11 @@ validatePin() {
 user_usage_check() {
     true
 }
+
+user_dir_check() {
+    username="$1"
+    if ! [ -d /data/users/simdata_"$username".job ]; then
+        echo "User directory not found, creating..."
+        touch ./data/users/simdata_"$username".job
+    fi
+}

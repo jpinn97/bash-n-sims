@@ -17,9 +17,11 @@ printf "\n"
 case $? in
 0)
     echo "Login successful: Welcome $username!"
+    user_dir_check "$username"
     ;;
 1)
     echo "[ADMIN] $username logged in"
+    user_dir_check "$username"
     ./admin_tools.sh
     exit 0
     ;;
