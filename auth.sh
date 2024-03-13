@@ -1,18 +1,27 @@
-#!/bin/bash
+#!/bin/ash
 
-declare -A user_data
+# Read the JSON file and process it
+user_data=$(cat ./data/UPP.json)
 
-while IFS=, read -r username role password pin || [[ -n $username ]]; do
-    user_data["$username"]="$role,$password,$pin"
-done < <(tail -n +2 ./data/UPP.db)
+# Function to get user data from the JSON
+get_user_data() {
+    username="$1"
+    echo "$user_data" | jq -r ".users.${username}"
+}
 
-# Check if the key exists in the array and process accordingly
-if [[ -n "${user_data[$1]}" ]]; then
+# Check if the user exists and process accordingly
+user_info=$(get_user_data "$1")
 
-    IFS=, read -r role password pin <<< "${user_data[$1]}"
-    
-    if [[ $2 == $password ]]; then
-        exit 0
+if [ -n "$user_info" ]; then
+    role=$(echo "$user_info" | jq -r '.role')
+    password=$(echo "$user_info" | jq -r '.password')
+
+    if [ "$2" = "$password" ]; then
+        if [ "$role" -eq 0 ]; then
+            exit 0
+        elif [ "$role" -eq 1 ]; then
+            exit 1
+        fi
     else
         exit 13
     fi
