@@ -70,6 +70,8 @@ create_user() {
         '.users[$username] = {role: $role, password: $password, pin: $pin}')
 
     echo "$updated_user_data" >./data/UPP.json
+
+    read -p "Press [Enter] key to continue..." readEnterKey
 }
 
 # If user exists, delete the user and rewrite the file
@@ -86,6 +88,7 @@ delete_user() {
     else
         echo "User does not exist."
     fi
+    read -p "Press [Enter] key to continue..." readEnterKey
 }
 
 # If user exists, update the user and rewrite the file
@@ -127,7 +130,7 @@ update_user() {
     else
         echo "User does not exist."
     fi
-
+    read -p "Press [Enter] key to continue..." readEnterKey
 }
 
 while true; do
