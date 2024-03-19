@@ -13,6 +13,7 @@ if [ "$REPLY" = "y" ]; then
     if [ -z "$input" ]; then
         echo "No pre-defined input found"
         read -r -p "Enter 10 Byte tasks (comma seperated): " input
+        echo "$input" >./data/users/simdata_"$1".job
     fi
 else
     read -r -p "Enter 10 Byte tasks (comma seperated): " input

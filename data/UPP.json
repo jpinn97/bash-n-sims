@@ -24,6 +24,16 @@
       "role": 0,
       "password": "ding5",
       "pin": "123"
+    },
+    "david": {
+      "role": 0,
+      "password": "ding5",
+      "pin": "123"
+    },
+    "doink": {
+      "role": 0,
+      "password": "ding5",
+      "pin": "123"
     }
   }
 }

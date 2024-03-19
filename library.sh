@@ -47,6 +47,7 @@ user_logger() {
     case $2 in
     *"Session:"*)
         echo "User: $1, Session: $2, Time: $(date)" >>./data/Usage.db
+        return
         ;;
     esac
     echo "User: $1, Action: $2, Time: $(date)" >>./data/Usage.db
