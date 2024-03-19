@@ -56,7 +56,7 @@ IFS=','
 for byte in $input; do
     sleep 1
     clear
-    echo "Enqueueing ${GREEN}${byte}${NC}"
+    printf "Enqueueing ${GREEN}${byte}${NC}"
     enqueue "$byte"
     echo "FIFO Queue is now: ${queue}"
 done
@@ -68,7 +68,7 @@ read -r -p "Press enter to dequeue the tasks" REPLY
 for byte in $queue; do
     sleep 1
     clear
-    echo "Dequeueing ${GREEN}${byte}${NC}"
+    printf "Dequeueing ${GREEN}${byte}${NC}"
     dequeue
     echo "FIFO Queue is now: ${queue}"
 done

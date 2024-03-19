@@ -83,7 +83,7 @@ NC='\033[0m'
 # Menu
 while true; do
     clear
-    echo "${RED}"
+    printf "${RED}"
     echo "===================="
     echo "User Simulation Menu"
     echo "===================="
@@ -92,7 +92,7 @@ while true; do
     echo "3. Change Password"
     echo "4. Exit"
     echo "Enter your choice: "
-    echo "${NC}"
+    printf "${NC}"
     read choice
 
     case $choice in
