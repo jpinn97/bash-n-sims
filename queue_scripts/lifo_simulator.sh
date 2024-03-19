@@ -55,7 +55,7 @@ for byte in $input; do
     clear
     printf "Pushing ${GREEN}${byte}${NC}"
     push "$byte"
-    echo "LIFO Queue is now: ${queue}"
+    echo "\nLIFO Queue is now: ${queue}"
 done
 
 IFS=" "
@@ -67,5 +67,5 @@ while [ -n "$queue" ]; do
     byte=${queue##* }
     printf "Popping ${GREEN}${byte}${NC}"
     pop
-    echo "LIFO Queue is now: ${queue}"
+    echo "\nLIFO Queue is now: ${queue}"
 done
