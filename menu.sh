@@ -72,10 +72,10 @@ while true; do
 
     case $choice in
     1)
-        true
+        ./queue_scripts/lifo_simulator.sh "$username"
         ;;
     2)
-        true
+        ./queue_scripts/fifo_simulator.sh "$username"
         ;;
     3)
         user_change_password
