@@ -58,6 +58,7 @@ for byte in $input; do
     clear
     printf "Enqueueing ${GREEN}${byte}${NC}"
     enqueue "$byte"
+    echo
     echo "\nFIFO Queue is now: ${queue}"
 done
 
@@ -70,5 +71,6 @@ for byte in $queue; do
     clear
     printf "Dequeueing ${GREEN}${byte}${NC}"
     dequeue
-    echo "\nFIFO Queue is now: ${queue}"
+    echo
+    echo "FIFO Queue is now: ${queue}"
 done
