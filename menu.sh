@@ -24,7 +24,7 @@ case $? in
 1)
     echo "[ADMIN] $username logged in"
     user_dir_check "$username"
-    ./admin_tools.sh
+    ./admin_tools.sh "$username"
     exit 0
     ;;
 *)

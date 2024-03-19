@@ -76,11 +76,12 @@ create_user() {
 
 # If user exists, delete the user and rewrite the file
 delete_user() {
+    user=$1
     username=$(read_exit_check "Enter a username: ")
     if ! check_user_exists "$username"; then
         updated_user_data=$(echo "$user_data" | jq "del(.users.\"$username\")")
         pin=$(read_exit_check "Enter your pin: ")
-        if [ "$pin" = "$(get_username_data "$username" | jq -r '.pin')" ]; then
+        if [ "$pin" = "$(get_username_data "$1" | jq -r '.pin')" ]; then
             echo "$updated_user_data" >./data/UPP.json
         else
             echo "Invalid pin."
@@ -93,6 +94,7 @@ delete_user() {
 
 # If user exists, update the user and rewrite the file
 update_user() {
+    user=$1
     username=$(read_exit_check "Enter a username: ")
     if ! check_user_exists "$username"; then
         while true; do
@@ -115,7 +117,7 @@ update_user() {
         done
 
         pin=$(read_exit_check "Enter your pin: ")
-        if [ "$pin" = "$(get_username_data "$username" | jq -r '.pin')" ]; then
+        if [ "$pin" = "$(get_username_data "$user" | jq -r '.pin')" ]; then
 
             updated_username_data=$(echo "$user_data" | jq \
                 --arg username "$username" \
@@ -154,17 +156,17 @@ while true; do
         ;;
     2)
         echo "Delete User"
-        delete_user
+        delete_user "$1"
         ;;
     3)
         echo "Update User"
-        update_user
+        update_user "$1"
         ;;
     4) # Exit the script
         true
         ;;
     5) # User stats
-        true
+        ./admin_usage_tools.sh
         ;;
     6) # Exit the script
         echo "Bye!"
