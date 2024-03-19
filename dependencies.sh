@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Create /data/users directory if it doesn't exist
+if [ ! -d "./data/users" ]; then
+    sudo mkdir -p ./data/users
+fi
+
 # Installs jq from the packages directory
 if which jq >/dev/null; then
     true
