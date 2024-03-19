@@ -13,7 +13,23 @@ total_time_by_user() {
 
 # Most popular simulator overall
 most_popular_simulator() {
-    true
+    lifo=0
+    fifo=0
+    while IFS= read -r line || [ -n "$line" ]; do
+        if echo "$line" | grep -q "lifo"; then
+            lifo=$((lifo + 1))
+        elif echo "$line" | grep -q "fifo"; then
+            fifo=$((fifo + 1))
+        fi
+    done <./data/Usage.db
+
+    if [ $lifo -gt $fifo ]; then
+        echo "Most popular simulator: LIFO"
+    elif [ $lifo -lt $fifo ]; then
+        echo "Most popular simulator: FIFO"
+    else
+        echo "Most popular simulator: Same usage"
+    fi
 }
 
 # Ranking list of the users who have used the system the most
@@ -35,9 +51,11 @@ while true; do
         ;;
     2)
         most_popular_simulator
+        read -p "Press [Enter] key to continue..." readEnterKey
         ;;
     3)
         ranking_list
+        read -p "Press [Enter] key to continue..." readEnterKey
         ;;
 
     esac
