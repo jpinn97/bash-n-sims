@@ -46,7 +46,7 @@ user_dir_check() {
 user_logger() {
     case $2 in
     *"Session:"*)
-        echo "User: $1, Action: $2, Time: $(date)" >>./data/Usage.db
+        echo "User: $1, Session: $2, Time: $(date)" >>./data/Usage.db
         ;;
     esac
     echo "User: $1, Action: $2, Time: $(date)" >>./data/Usage.db

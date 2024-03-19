@@ -19,7 +19,6 @@ login_time=$(date +%s)
 case $? in
 0)
     echo "Login successful: Welcome $username!"
-    user_logger "$username" "login"
     user_dir_check "$username"
     ;;
 1)
