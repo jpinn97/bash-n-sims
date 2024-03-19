@@ -69,5 +69,5 @@ while [ -n "$queue" ]; do
     printf "Popping ${GREEN}${byte}${NC}"
     pop
     echo
-    echo "\nLIFO Queue is now: ${queue}"
+    echo "LIFO Queue is now: ${queue}"
 done
