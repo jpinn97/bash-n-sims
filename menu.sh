@@ -14,9 +14,12 @@ printf "\n"
 
 ./auth.sh "$username" "$password"
 
+login_time=$(date +%s)
+
 case $? in
 0)
     echo "Login successful: Welcome $username!"
+    user_logger "$username" "login"
     user_dir_check "$username"
     ;;
 1)
@@ -58,6 +61,16 @@ user_change_password() {
     fi
 }
 
+handle_exit() {
+    exit_time=$(date +%s)
+    time_diff=$((exit_time - login_time))
+    user_logger "$username" "Session: $login_time,$exit_time,$time_diff"
+    echo "Bye!"
+    exit 0
+}
+
+trap handle_exit INT TERM
+
 while true; do
     clear
     echo "===================="
@@ -72,17 +85,19 @@ while true; do
 
     case $choice in
     1)
+        user_logger "$username" "lifo"
         ./queue_scripts/lifo_simulator.sh "$username"
         ;;
     2)
+        user_logger "$username" "fifo"
         ./queue_scripts/fifo_simulator.sh "$username"
         ;;
     3)
+        user_logger "$username" "passwd"
         user_change_password
         ;;
     4) # Exit the script
-        echo "Bye!"
-        exit 0
+        handle_exit
         ;;
     *)
         echo "Error: Invalid option..."

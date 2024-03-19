@@ -42,3 +42,16 @@ user_dir_check() {
         touch ./data/users/simdata_"$username".job
     fi
 }
+
+user_logger() {
+    case $2 in
+    *"Session:"*)
+        echo "User: $1, Action: $2, Time: $(date)" >>./data/Usage.db
+        ;;
+    esac
+    echo "User: $1, Action: $2, Time: $(date)" >>./data/Usage.db
+    # when user logs in
+    # when they logged out?
+    # how long they used system for
+    # what sims they used
+}
