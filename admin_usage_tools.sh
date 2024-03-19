@@ -6,6 +6,7 @@
 # Load the entire JSON file into a variable
 user_data=$(retrieve_user_data)
 
+# jq to check if the key user exists
 check_user_exists() {
     user="$1"
     result=$(echo "$user_data" | jq -r ".users | has(\"$user\")")
@@ -16,6 +17,7 @@ check_user_exists() {
     fi
 }
 
+# Calculate total time by user
 total_time_by_user() {
     user=$1
     local time=0
@@ -27,6 +29,7 @@ total_time_by_user() {
     echo "$time" Total seconds by "$user"
 }
 
+# Most popular simulator by user
 most_popular_sim_by_user() {
     lifo=0
     fifo=0
@@ -69,6 +72,7 @@ most_popular_simulator() {
     fi
 }
 
+# Ranks users by total time given the leading column (number of seconds), descending
 ranking_list() {
     tmp_file=$(mktemp)
     IFS='
@@ -86,7 +90,7 @@ while true; do
     clear
     echo "1. Total time by user"
     echo "2. Most popular simulator by user"
-    echo "2. Most popular simulator"
+    echo "3. Most popular simulator"
     echo "4. Ranking list"
     echo "5. Exit"
     read choice

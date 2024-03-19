@@ -1,15 +1,17 @@
 #!/bin/ash
 
+# Hot reload the library as it may have changed during session
 retrieve_user_data() {
     cat ./data/UPP.json
 }
 
+# For some prompts, check if "Bye" is entered
 read_exit_check() {
     message="$1"
     read -r -p "$message" REPLY
-    if [ "$REPLY" = "Bye" ]; then
+    if [ "$(echo "$REPLY" | tr '[:upper:]' '[:lower:]')" = "bye" ]; then
         read -r -p "Are you sure you want to exit? (y/n) " REPLY
-        if [ "$REPLY" = "y" ]; then
+        if [ "$(echo "$REPLY" | tr '[:upper:]' '[:lower:]')" = "y" ]; then
             kill -s TERM $$ # Exit the script forcefully
         else
             echo "Cancelled"
@@ -19,6 +21,7 @@ read_exit_check() {
     fi
 }
 
+# Regex for validation user, pass, pin
 validateUsername() {
     echo "$1" | grep -Eq "^[a-zA-Z0-9]{5}$"
 }
@@ -35,6 +38,7 @@ user_usage_check() {
     true
 }
 
+# Checks if user exists
 user_dir_check() {
     username="$1"
     if ! [ -d /data/users/simdata_"$username".job ]; then
@@ -43,6 +47,7 @@ user_dir_check() {
     fi
 }
 
+# Logs user actions to Usage.db
 user_logger() {
     case $2 in
     *"Session:"*)
@@ -55,4 +60,15 @@ user_logger() {
     # when they logged out?
     # how long they used system for
     # what sims they used
+}
+
+# Loading animation
+loading() {
+    i=1
+    while [ "$i" -le 5 ]; do
+        echo -n ". "
+        sleep 0.5
+        i=$((i + 1))
+    done
+    echo ""
 }

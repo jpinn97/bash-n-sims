@@ -12,6 +12,7 @@ get_user_data() {
 # Check if the user exists and process accordingly
 user_info=$(get_user_data "$1")
 
+# If the user exists, check the role and password
 if [ -n "$user_info" ]; then
     role=$(echo "$user_info" | jq -r '.role')
     password=$(echo "$user_info" | jq -r '.password')

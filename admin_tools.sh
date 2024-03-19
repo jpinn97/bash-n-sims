@@ -16,11 +16,13 @@ check_user_exists() {
     fi
 }
 
+# Pulls username data from the JSON
 get_username_data() {
     username="$1"
     echo "$user_data" | jq -r ".users.${username}"
 }
 
+# Create user allows the creation of a username, password, pin, and role, until the information is valid, then rewrites to file
 create_user() {
     while true; do
         newUsername=$(read_exit_check "Enter a username: ")
@@ -70,6 +72,7 @@ create_user() {
     echo "$updated_user_data" >./data/UPP.json
 }
 
+# If user exists, delete the user and rewrite the file
 delete_user() {
     username=$(read_exit_check "Enter a username: ")
     if ! check_user_exists "$username"; then
@@ -85,6 +88,7 @@ delete_user() {
     fi
 }
 
+# If user exists, update the user and rewrite the file
 update_user() {
     username=$(read_exit_check "Enter a username: ")
     if ! check_user_exists "$username"; then

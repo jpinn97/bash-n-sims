@@ -1,5 +1,6 @@
 #!/bin/ash
 
+# Performs installation and executability of dependencies
 chmod +x ./*.sh
 chmod +x ./queue_scripts/*.sh
 ./dependencies.sh
@@ -14,11 +15,10 @@ printf "\n"
 
 ./auth.sh "$username" "$password"
 
-login_time=$(date +%s)
-
 case $? in
 0)
     echo "Login successful: Welcome $username!"
+    loading
     user_dir_check "$username"
     ;;
 1)
@@ -33,6 +33,9 @@ case $? in
     ;;
 esac
 
+login_time=$(date +%s)
+
+# Uses jq to read and rewrite password to user
 user_change_password() {
     while true; do
         newPassword=$(read_exit_check "Enter a new password: ")
@@ -60,18 +63,27 @@ user_change_password() {
     fi
 }
 
+# Logs user out and logs their session
 handle_exit() {
     exit_time=$(date +%s)
     time_diff=$((exit_time - login_time))
     user_logger "$username" "Session: $login_time,$exit_time,$time_diff"
+    loading
     echo "Bye!"
     exit 0
 }
 
+# Catches ungraceful exits
 trap handle_exit INT TERM
 
+# ANSI colours
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Menu
 while true; do
     clear
+    echo "${RED}"
     echo "===================="
     echo "User Simulation Menu"
     echo "===================="
@@ -80,6 +92,7 @@ while true; do
     echo "3. Change Password"
     echo "4. Exit"
     echo "Enter your choice: "
+    echo "${NC}"
     read choice
 
     case $choice in

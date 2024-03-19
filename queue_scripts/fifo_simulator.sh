@@ -25,6 +25,7 @@ queue=""
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+# Add a byte to the queue
 enqueue() {
     local byte=$1
     if [ -z "$queue" ]; then
@@ -38,6 +39,7 @@ display_queue() {
     echo "Current Queue: ${queue}"
 }
 
+# Takes the first element off the queue
 dequeue() {
     # Check if queue contains a space
     if echo "$queue" | grep -q ' '; then
@@ -49,6 +51,7 @@ dequeue() {
     fi
 }
 
+# Loop over string splitting and enqueueing each byte
 IFS=','
 for byte in $input; do
     sleep 1
@@ -61,6 +64,7 @@ done
 IFS=" "
 read -r -p "Press enter to dequeue the tasks" REPLY
 
+# Loop over the queue, dequeueing each byte
 for byte in $queue; do
     sleep 1
     clear

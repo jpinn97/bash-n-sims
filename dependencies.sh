@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Installs jq from the packages directory
 if which jq >/dev/null; then
     true
     # echo "Performing dependency check..."

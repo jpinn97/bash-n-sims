@@ -51,7 +51,7 @@ pop() {
 
 IFS=','
 for byte in $input; do
-    #sleep 1
+    sleep 1
     clear
     echo "Pushing ${GREEN}${byte}${NC}"
     push "$byte"
