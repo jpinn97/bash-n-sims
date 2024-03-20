@@ -59,7 +59,7 @@ for byte in $input; do
     printf "Enqueueing ${GREEN}${byte}${NC}"
     enqueue "$byte"
     echo
-    echo "\nFIFO Queue is now: ${queue}"
+    echo "FIFO Queue is now: ${queue}"
 done
 
 IFS=" "

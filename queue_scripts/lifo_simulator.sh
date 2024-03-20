@@ -56,7 +56,7 @@ for byte in $input; do
     printf "Pushing ${GREEN}${byte}${NC}"
     push "$byte"
     echo
-    echo "\nLIFO Queue is now: ${queue}"
+    echo "LIFO Queue is now: ${queue}"
 done
 
 IFS=" "
