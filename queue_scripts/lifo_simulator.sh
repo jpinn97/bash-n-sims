@@ -65,7 +65,6 @@ read -r -p "Press enter to pop the tasks" REPLY
 while [ -n "$queue" ]; do
     sleep 1
     clear
-    byte=${queue##* }
     printf "Popping ${GREEN}${byte}${NC}"
     pop
     echo

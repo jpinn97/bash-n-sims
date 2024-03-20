@@ -38,12 +38,12 @@ user_usage_check() {
     true
 }
 
-# Checks if user exists
+# Checks if user file exists
 user_dir_check() {
     username="$1"
-    if ! [ -d /data/users/simdata_"$username".job ]; then
-        echo "User directory not found, creating..."
-        touch ./data/users/simdata_"$username".job
+    if ! [ -f /data/users/simdata_"$username".job ]; then
+        echo "User file not found, creating..."
+        touch /data/users/simdata_"$username".job
     fi
 }
 
