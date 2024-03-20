@@ -1,0 +1,3 @@
+username=tc
+password=tinycore123!
+passphrase=tinycore

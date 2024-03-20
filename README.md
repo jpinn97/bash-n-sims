@@ -1,4 +1,4 @@
-# Queue Simulator - README
+# Queue Simulator - 908068.tgz
 
 After reviewing the assignment document, a quick draw up of the design using [Mermaid](https://mermaid-js.github.io/mermaid/#/) was done.
 
@@ -376,9 +376,6 @@ ranking_list() {
     rm "$tmp_file"
 }
 ```
-
-### Example Runnings
-
 
 ## Bibliography
 
