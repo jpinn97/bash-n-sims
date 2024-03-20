@@ -4,7 +4,7 @@ After reviewing the assignment document, a quick draw up of the design using [Me
 
 ## Dependencies
 
-![Dependencies](/mermaid-diagram-2024-03-06-210638.png)
+![Dependencies](mermaid-diagram-2024-03-06-210638.png)
 
 ## Menu
 
@@ -103,7 +103,7 @@ printf "${RED}"
 
 <center>
 
-![Menu](/image/README/image.png)
+![Menu](image/README/image.png)
 
 </center>
 
@@ -357,7 +357,7 @@ The `ranking_list` function reads the `UPP.json` file and gathers all existing u
 
 sort is used:
 
--n for numerical sort
+-n for numerical sort with lines leading with numbers (we put total time there)
 -r for reverse order
 -k1 for the first column
 
@@ -376,6 +376,9 @@ ranking_list() {
     rm "$tmp_file"
 }
 ```
+
+### Example Runnings
+
 
 ## Bibliography
 

@@ -5,9 +5,9 @@
       "password": "admin",
       "pin": 123
     },
-    "yeet5": {
-      "role": 1,
-      "password": "ding3",
+    "vijay": {
+      "role": 0,
+      "password": "vijay",
       "pin": "123"
     },
     "david": {
